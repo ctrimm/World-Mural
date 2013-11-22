@@ -1,0 +1,21 @@
+# do not allow anyone else to read your .htaccess file <Files .htaccess> deny from all </Files>
+# forbid viewing of directories Options All -Indexes
+# hide this list of files from being seen when listing a directory IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+# disable the server signature- helps with preformance ServerSignature Off
+# since it's out of fashion to use www- redirect URLs to non-www Options +FollowSymLinks RewriteEngine On RewriteCond %{HTTP_HOST} ^www\.worldmuralproject\.org$ [NC] RewriteRule ^.*$ http://worldmuralproject.org%{REQUEST_URI} [R=301,L] RewriteBase / # keep the URLs clean: # if someone asks for index.php- rewrite the URL without it RewriteRule ^(.*?)/?index\.php$ $1 [NC,R=301,L]
+
+#THE BELOW WORKS, JUST NEED TO IGNORE index.php AND OTHER FILES
+RewriteEngine on
+#MAKES /RSVP redirect to rsvp.php
+RewriteRule ^rsvp$ rsvp.php [L]
+RewriteRule ^about$ about.php [L]
+RewriteRule ^support$ support.php [L]
+RewriteRule ^email$ email.php [L]
+Redirect 301 /walkway http://www.thepublicartacademy.org
+#REDIRECTS /ARTICLE/ID TO ARTICLE.PHP?id=ID
+#RewriteRule /article/([0-9]+)$ /article.php?id=$1
+#RewriteRule ^(terms\.php|index\.php|dashboard\.php|create\.php|article\.php|ajax_like\.php|s\.php|about\.php|index2\.php|backpack\.php) - [L]
+#RewriteRule ^([^/]+)$ author.php?a=$1 [L,QSA]
+#RewriteRule ^article/([0-9]+)/?$ article.php?id=$1 [L,QSA]
+#RewriteRule ^backpack/([0-9]+)/?$ backpack.php?id=$1 [L,QSA]
+
